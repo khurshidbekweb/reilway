@@ -6,7 +6,7 @@ const Auth = () => {
 
     const handleLogin = (e:  React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        navigate('/')
+        navigate('/dashboard')
     }
 
     return (
