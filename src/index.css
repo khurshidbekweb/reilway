@@ -117,3 +117,28 @@
     @apply bg-background text-foreground;
   }
 }
+.home-page::-webkit-scrollbar{
+  /* display: block; */
+  height: 5px;
+}
+/* Scroll umumiy kengligi */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Skroll fon rangi */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* Skroll thumb (tutqich) rangi */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Hover qilinganda skroll thumb rangi */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

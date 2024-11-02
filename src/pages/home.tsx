@@ -1,8 +1,9 @@
+import TableReilway from "@/components/table";
 
 const Home = () => {
     return (
-        <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, quia excepturi velit aperiam voluptatibus unde officiis sequi voluptates similique repudiandae eveniet, nobis sapiente architecto dolores natus neque obcaecati nemo quaerat. Placeat eum commodi beatae? Vel, optio itaque cum eos fuga incidunt accusamus. Consequuntur in repudiandae nihil. Quasi nulla fugit sint.
+        <div className="home-page max-w-7xl mx-auto px-1 overflow-hidden overflow-x-scroll">
+            <TableReilway/>
         </div>
     );
 };
