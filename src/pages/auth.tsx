@@ -6,6 +6,13 @@ const Auth = () => {
 
     const handleLogin = (e:  React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        try {
+            console.log(1);
+            
+        } catch (err) {
+            console.log(err);
+            
+        }
         navigate('/dashboard')
     }
 

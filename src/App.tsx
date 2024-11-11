@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./layouts/Root";
 import Auth from "./pages/auth";
 import Home from "./pages/home";
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
+import { Toaster } from 'react-hot-toast'
 
 
 
@@ -24,9 +26,13 @@ const router = createBrowserRouter([
 
 
 const App = () => {
+  const queryClient = new QueryClient()
   return (
     <div>
-      <RouterProvider router={router}/>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router}/>
+        <Toaster/>
+      </QueryClientProvider>
     </div>
   );
 };
