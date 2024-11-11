@@ -26,8 +26,16 @@ export interface reviewType{
     _id:string
     createdAt: string
     name: {uz: string, ru: string}
+    sub_reviews: sub_reviews
+    updatedAt:string
+}
+export interface sub_reviews{
+    _v:number
+    _id:string
+    createdAt: string
+    name: {uz: string, ru: string}
     review: string
-    sub_reviews:[]
+    sub_reviews: sub_reviews
     updatedAt:string
 }
 
