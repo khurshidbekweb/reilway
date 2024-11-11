@@ -31,10 +31,7 @@ const Auth = () => {
             })
         } catch (err) {
             console.log(err);
-        }
-
-        console.log(auth.variables);
-        
+        }        
     }
 
     return (

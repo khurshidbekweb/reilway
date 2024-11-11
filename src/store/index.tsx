@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type Language = 'en' | 'es' | 'fr';
+type Language = 'uz' | 'ru';
 
 interface LanguageContextType {
     language: Language;
@@ -14,7 +14,7 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-    const [language, setLanguage] = useState<Language>('en');
+    const [language, setLanguage] = useState<Language>('uz');
 
     const changeLanguage = (lang: Language) => {
         setLanguage(lang);
