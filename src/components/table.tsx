@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import {
     Table,
     TableBody,
@@ -7,9 +6,21 @@ import {
     TableHeader,
     TableRow
 } from "./ui/table";
+import { review } from "@/types";
+import { reviewUtils } from "@/utils/review";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "./loader";
+
 
 const TableReilway = () => {
+    const {data, isLoading} = useQuery({
+        queryFn: reviewUtils.getRewievs,
+        queryKey: ['get_all_review']
+    })
+    console.log(data?.data);  
+    
     return (
+        isLoading ? <Loader/> :
         <Table>
             <TableHeader>
                 <TableRow>
@@ -23,33 +34,17 @@ const TableReilway = () => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                <TableRow>
-                    <TableCell className="font-medium">1</TableCell>
-                    <TableCell>+998971082004</TableCell>
-                    <TableCell><span className="border inline-block px-2">5</span></TableCell>
-                    <TableCell className="line-clamp-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam aperiam impedit dolorum quae culpa neque.</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>13:15 02/11/2024</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell className="font-medium">1</TableCell>
-                    <TableCell>+998971082004</TableCell>
-                    <TableCell><span className={cn("border inline-block px-2 rounded-sm", )}>2</span></TableCell>
-                    <TableCell className="line-clamp-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam aperiam impedit dolorum quae culpa neque.</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>13:15 02/11/2024</TableCell>
-                </TableRow>
-                <TableRow>
-                    <TableCell className="font-medium">1</TableCell>
-                    <TableCell>+998971082004</TableCell>
-                    <TableCell><span className="border inline-block px-2">3</span></TableCell>
-                    <TableCell className="line-clamp-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam aperiam impedit dolorum quae culpa neque.</TableCell>
-                    <TableCell></TableCell>
-                    <TableCell></TableCell>
-                    <TableCell>13:15 02/11/2024</TableCell>
-                </TableRow>
+                {data?.data?.length && data.data.map((el:review, i:number) => (
+                    <TableRow>
+                        <TableCell className="font-medium">{i+1}</TableCell>
+                        <TableCell>{el.user.phone_number==null?'aniqlanmagan':'+'+el.user.phone_number}</TableCell>
+                        <TableCell><span className="border inline-block px-2">{el.mark}</span></TableCell>
+                        <TableCell className="line-clamp-2">{el.comment}</TableCell>
+                        <TableCell></TableCell>
+                        <TableCell></TableCell>
+                        <TableCell>{el.createdAt.slice(11, 16)} -- {el.createdAt.slice(0, 10)}</TableCell>
+                    </TableRow>
+                ))}
             </TableBody>
         </Table>
 
