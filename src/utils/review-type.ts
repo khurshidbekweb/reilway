@@ -1,11 +1,11 @@
 import custimAxios from "@/services"
 
-interface postReviewType{
+export interface postReviewTypeT{
     name: {
         uz:string,
         ru: string
     },
-    reviewTypeId:string |''
+    reviewTypeId:string | null
 }
 
 export const reviewTypeUtils = {
@@ -17,7 +17,7 @@ export const reviewTypeUtils = {
         })
         return data
     },
-    postReviewType: async ({name, reviewTypeId}:postReviewType) => {
+    postReviewType: async ({name, reviewTypeId}:postReviewTypeT) => {
         const {data} = await custimAxios.post('/review-type/add',{
             name, reviewTypeId
         }, {

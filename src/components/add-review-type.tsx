@@ -29,14 +29,19 @@ const AddReviewType = () => {
         }
     })
     console.log(data?.data);
-    const addhnadleReview = (e) => {
+    const addhnadleReview = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        const target = e.target as typeof e.target & {
+            uz: { value: string };
+            ru: { value: string };
+            parent: { value: string };
+        };
         addReview.mutate({
             name: {
-                uz: e.target.uz.value,
-                ru: e.target.ru.value
+                uz: target.uz.value,
+                ru: target.ru.value
             },
-            reviewTypeId: e.target.parent.value || null
+            reviewTypeId: target.parent.value || null
         })
     }
     
