@@ -8,5 +8,13 @@ export const reviewUtils = {
             }
         })
         return data
-    }
+    },    
+    getReviewStatictics: async () => {
+        const {data} = await custimAxios.get('/review/statistics/stats',{
+            headers: {
+                Authorization: `Token ${localStorage.getItem("token")}`
+            }
+        })
+        return data
+    },
 }

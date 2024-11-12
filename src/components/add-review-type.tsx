@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
@@ -52,10 +52,7 @@ const AddReviewType = () => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>Add review</DialogTitle>
-                    <DialogDescription>
-                        Make changes to your profile here. Click save when you're done.
-                    </DialogDescription>
+                    <DialogTitle>{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={addhnadleReview}>
                 <div className="grid gap-4 py-4">
@@ -68,6 +65,7 @@ const AddReviewType = () => {
                             name="uz"
                             className="col-span-3"
                             placeholder="Salom"
+                            required
                         />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -79,6 +77,7 @@ const AddReviewType = () => {
                             id="username"
                             placeholder="Привет"
                             className="col-span-3"
+                            required
                         />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -90,7 +89,7 @@ const AddReviewType = () => {
                             <SelectValue placeholder={language=='uz'?'Ota reviewni tanlang':'Выберите родительский отзыв'} />
                         </SelectTrigger>
                         <SelectContent>
-                            {data?.data?.length && data.data.map((el:reviewType) => (
+                            {data?.subReviews?.length && data.subReviews.map((el:reviewType) => (
                                 <SelectItem value={el._id} key={el._id}>{el.name[language]}</SelectItem>
                             ))}
                         </SelectContent>

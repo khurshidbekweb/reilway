@@ -20,6 +20,8 @@ const Auth = () => {
             toast.error('Error ')            
         }
     })
+    console.log();
+    
 
     const handleLogin = (e:  React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
