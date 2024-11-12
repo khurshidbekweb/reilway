@@ -28,7 +28,6 @@ const AddReviewType = () => {
             toast.error('Error ❌')
         }
     })
-    console.log(data?.data);
     const addhnadleReview = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const target = e.target as typeof e.target & {

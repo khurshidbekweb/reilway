@@ -48,3 +48,13 @@ export interface user{
     language: "ru" | "uz"
     phone_number: string
 }
+
+export interface statistics{    
+    count:number
+    _id:number
+}
+export interface paretReview{
+    count: number
+    name: {uz: string, ru: string}
+    _id: string
+}
