@@ -72,9 +72,12 @@
     @apply bg-background text-foreground;
   }
 }
+body::-webkit-scrollbar{
+  display: none;
+}
 .home-page::-webkit-scrollbar{
   /* display: block; */
-  height: 5px;
+  height: 4px;
 }
 /* Scroll umumiy kengligi */
 ::-webkit-scrollbar {
@@ -95,5 +98,5 @@
 
 /* Hover qilinganda skroll thumb rangi */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #e6dfdf;
 }

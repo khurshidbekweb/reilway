@@ -43,5 +43,13 @@ export const reviewTypeUtils = {
             }
         })
         return data
+    },
+    deleteReviewType: async (id: string) => {
+        const {data} = await custimAxios.delete(`review-type/delete/${id}`, {
+            headers: {
+                Authorization: `Token ${localStorage.getItem("token")}`
+            }
+        })
+        return data
     }
 }

@@ -7,19 +7,33 @@ import {
     TableRow
 } from "./ui/table";
 import { getReviewType, sub_reviews } from "@/types";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Loader from "./loader";
 import { useLanguage } from "@/store";
 import { reviewTypeUtils } from "@/utils/review-type";
 import EditReview from "@/modal/edit-review";
+import DeleteReview from "@/modal/delete-review";
+import toast from "react-hot-toast";
 
 const ReviewType = () => {
     const {language} = useLanguage()
+    const queryClient = useQueryClient()
     const {data, isLoading} = useQuery({
         queryFn: reviewTypeUtils.getReviewType,
         queryKey: ['get_all_review_types']
     })    
-    console.log(data?.data);
+
+    const deleteReviewType = useMutation({
+        mutationFn: reviewTypeUtils.deleteReviewType,
+        onSuccess:()=>{
+            toast.success('O`chirildi')
+            queryClient.invalidateQueries({queryKey: ['get_all_review_types']})
+        },
+        onError: (err) => {
+            console.log(err);
+            toast.error('Xatolik')
+        }
+    })
     
     return (
         isLoading ? <Loader/> :
@@ -46,8 +60,9 @@ const ReviewType = () => {
                         </ul></TableCell>
                         <TableCell>{el.createdAt.slice(11, 16)} -- {el.createdAt.slice(0, 10)}</TableCell>
                         <TableCell>{el.updatedAt.slice(11, 16)} -- {el.updatedAt.slice(0, 10)}</TableCell>
-                        <TableCell className="line-clamp-2">
+                        <TableCell className="flex items-center gap-3">
                             <EditReview id={el._id} name={el.name}/>
+                            <DeleteReview id={el._id} fn={deleteReviewType.mutate}/>
                         </TableCell>
                     </TableRow>
                 ))}

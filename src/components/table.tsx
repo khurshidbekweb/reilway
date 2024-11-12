@@ -43,8 +43,8 @@ const TableReilway = () => {
                         <TableCell className="font-medium">{i+1}</TableCell>
                         <TableCell>{el.user.phone_number==null?'aniqlanmagan':'+'+el.user.phone_number}</TableCell>
                         <TableCell><span className="border inline-block px-2">{el.mark}</span></TableCell>
-                        <TableCell><ul>{el.parent_review_type.name[language]}
-                            <li className="ml-2">● {el.review_type.name[language]}</li>
+                        <TableCell><ul>{el.parent_review_type?.name[language]}
+                            <li className="ml-2">● {el.review_type?.name[language]}</li>
                         </ul></TableCell>
                         <TableCell><p className={`p-1 rounded-md text-center text-[14px] font-semibold text-white ${el.status==0?'bg-red-500':'bg-green-500'}`}>{el.status==0?'Jarayonda':'Tayyor'}</p></TableCell>
                         <TableCell></TableCell>
