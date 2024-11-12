@@ -20,7 +20,7 @@ const Navbar = () => {
     },[naviagte, token])
     
     return (
-        <div className="max-w-7xl mx-auto px-2">
+        <div className="max-w-7xl mx-auto">
             <div className=" flex items-center justify-between my-2">
                 <h1 className="text-2xl font-serif">{language=='uz'?'REIWAY':'РЕЙВЕЙ'}</h1>
                 <div className="flex items-center gap-3">

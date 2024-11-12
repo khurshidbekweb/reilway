@@ -10,12 +10,10 @@ const Statistics = () => {
         queryFn: reviewUtils.getReviewStatictics,
         queryKey: ['get_all_statistics_stats']
     })
-    console.log(data, 'efvef')    
-    
     return (
         <div>
             <h1 className="text-2xl my-2">{language =='uz'?"Sharhlarning umumiy soni":'Oбщее число отзывов'}</h1>
-            <div className="w-full md:w-[60%] grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-5">
+            <div className="w-full md:w-[70%] grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-5">
                 <div className="shadow-md border p-2 rounded-lg text-white bg-green-400 flex items-start justify-between">
                     <div className="flex flex-col items-start space-y-2">
                         <h3 className="text-[17px]">{language=='uz'?'Ijobiy fikr bildirish':'Положительный отзыв'}</h3>

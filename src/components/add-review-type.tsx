@@ -47,7 +47,7 @@ const AddReviewType = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="bg-secondary block ml-auto">{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</Button>
+                <Button className="bg-black text-white block my-3 ml-auto">{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
