@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Button } from "../components/ui/button";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { reviewType } from "@/types";
 import { useLanguage } from "@/store";
 import { reviewTypeUtils } from "@/utils/review-type";
@@ -47,7 +47,7 @@ const AddReviewType = () => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="bg-black text-white block my-3 ml-auto">{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</Button>
+                <Button className="bg-[#747d8c] text-white block ml-auto">{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>

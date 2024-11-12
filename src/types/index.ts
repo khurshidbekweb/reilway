@@ -49,10 +49,20 @@ export interface user{
     phone_number: string
 }
 
+export interface getReviewType{
+    _id:string
+    __v:number
+    name:  {uz: string, ru: string}
+    createdAt: string
+    updatedAt:string
+    sub_reviews: sub_reviews[]
+}
+
 export interface statistics{    
     count:number
     _id:number
 }
+
 export interface paretReview{
     count: number
     name: {uz: string, ru: string}

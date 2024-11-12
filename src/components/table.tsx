@@ -13,6 +13,7 @@ import Loader from "./loader";
 import { useLanguage } from "@/store";
 
 
+
 const TableReilway = () => {
     const {language} = useLanguage()
     const {data, isLoading} = useQuery({
