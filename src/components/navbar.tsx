@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Separator } from "./ui/separator";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { LuLogOut } from "react-icons/lu";
 
 type Language = 'uz' | 'ru';
 
@@ -33,7 +34,7 @@ const Navbar = () => {
                     </SelectContent>
                 </Select>
                 <Button onClick={()=>{localStorage.removeItem('token')
-                    window.location.reload()}} className="bg-red-500 text-white">{language=='uz'?'Chiqish':'Выход'}</Button>
+                    window.location.reload()}} className="bg-red-500 text-white">{language=='uz'?'Chiqish':'Выход'} <LuLogOut size={35} /></Button>
                 </div>
             </div>
             <Separator/>

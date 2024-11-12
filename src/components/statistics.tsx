@@ -40,7 +40,7 @@ const Statistics = () => {
                 <div className="shadow-md  border p-2 rounded-lg text-white bg-yellow-400 flex items-start justify-between">
                     <div className="flex flex-col items-start space-y-2">
                         <h3 className="text-[17px]">{language=='uz'?'Tugallanmagan ko`rib chiqish':'Незаконченный обзор'}</h3>
-                        <p className="font-bold text-xl">{data?.categoryStats?.find((el:statistics) => el._id === 3)?.count ? data?.categoryStats?.find((el:statistics) => el._id === 3)?.count  : '0'}</p>
+                        <p className="font-bold text-xl">{data?.categoryStats?.find((el:statistics) => el._id === 0)?.count ? data?.categoryStats?.find((el:statistics) => el._id === 0)?.count  : '0'}</p>
                     </div>
                     <span className="shadow-lg text-white p-2 rounded-full bg-yellow-500"><CgNotes size={20}/></span>
                 </div>
