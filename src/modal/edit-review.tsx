@@ -7,6 +7,7 @@ import { useLanguage } from "@/store";
 import toast from "react-hot-toast";
 import { reviewTypeUtils } from "@/utils/review-type";
 import { MdOutlineModeEdit } from "react-icons/md";
+import { useState } from "react";
 
 interface editProps{
     name: {
@@ -19,11 +20,13 @@ interface editProps{
 const EditReview = ({id, name}:editProps) => {
     const {language} = useLanguage()
     const queryClient = useQueryClient()
+    const [open, setOpen] = useState(false)
     const editReviewType = useMutation({
         mutationFn: reviewTypeUtils.editReviewType,
         onSuccess:() => {
             toast.success('Taxrirlandi')
             queryClient.invalidateQueries({queryKey: ['get_all_review_types']})
+            setOpen(false)
         },
         onError:(err) => {
             console.log(err);            
@@ -47,9 +50,9 @@ const EditReview = ({id, name}:editProps) => {
     }
     return (
         <div>
-            <Dialog>
+            <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant={"link"} className=" text-green-800 block ml-auto"><MdOutlineModeEdit/></Button>
+                <Button onClick={() => setOpen(true)} variant={"link"} className=" text-green-800 block ml-auto"><MdOutlineModeEdit/></Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>

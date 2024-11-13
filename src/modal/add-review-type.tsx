@@ -8,20 +8,22 @@ import { reviewType } from "@/types";
 import { useLanguage } from "@/store";
 import { reviewTypeUtils } from "@/utils/review-type";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const AddReviewType = () => {
     const {language} = useLanguage()
     const queryClient = useQueryClient()
+    const [open, setOpen] = useState(false)
     const {data} = useQuery({
         queryFn: reviewTypeUtils.getReviewType,
-        queryKey: ['gett_all_review']
+        queryKey: ['get_all_review_types']
     })
     const addReview = useMutation({
         mutationFn: reviewTypeUtils.postReviewType,
         onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: ['gett_all_review']})
+            queryClient.invalidateQueries({queryKey: ['get_all_review_types']})
             toast.success('Success add review ✅')
-
+            setOpen(false)
         },
         onError:(err) => {
             console.log(err);
@@ -45,9 +47,9 @@ const AddReviewType = () => {
     }
     
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="bg-[#747d8c] text-white block ml-auto">{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</Button>
+                <Button onClick={() => setOpen(true)} className="bg-[#747d8c] text-white block ml-auto">{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
