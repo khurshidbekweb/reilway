@@ -11,6 +11,7 @@ export interface review {
     parent_review_type: reviewParent
     review_type: reviewType
     user: user
+    ticket: string,
 }
 export interface reviewParent{
     _v:number

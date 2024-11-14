@@ -11,6 +11,7 @@ import { reviewUtils } from "@/utils/review";
 import { useQuery } from "@tanstack/react-query";
 import Loader from "./loader";
 import { useLanguage } from "@/store";
+import TicketImg from "./ticket-img";
 
 
 
@@ -20,7 +21,7 @@ const TableReilway = () => {
         queryFn: reviewUtils.getRewievs,
         queryKey: ['get_all_review']
     })    
-    console.log(data?.data[0]);
+    console.log(data?.data);
     
     return (
         isLoading ? <Loader/> :
@@ -47,7 +48,7 @@ const TableReilway = () => {
                             <li className="ml-2">● {el.review_type?.name[language]}</li>
                         </ul></TableCell>
                         <TableCell><p className={`p-1 rounded-md text-center text-[14px] font-semibold text-white ${el.status==0?'bg-red-500':'bg-green-500'}`}>{el.status==0?'Jarayonda':'Tayyor'}</p></TableCell>
-                        <TableCell></TableCell>
+                        <TableCell>{el?.ticket ? <TicketImg ticket={el.ticket}/>: ''}</TableCell>
                         <TableCell>{el.createdAt.slice(11, 16)} -- {el.createdAt.slice(0, 10)}</TableCell>
                         <TableCell className="line-clamp-2">{el.comment}</TableCell>
                     </TableRow>
