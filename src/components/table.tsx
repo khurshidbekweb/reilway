@@ -16,11 +16,17 @@ import TicketImg from "./ticket-img";
 
 
 const TableReilway = () => {
-    const {language} = useLanguage()
+    const {language,mark} = useLanguage()
     const {data, isLoading} = useQuery({
         queryFn: reviewUtils.getRewievs,
         queryKey: ['get_all_review']
     })    
+    console.log(mark);
+
+    const sort = mark ? data?.data.filter((e: review) => e.mark ===  mark) : data?.data
+    console.log(sort);
+    
+    
     console.log(data?.data);
     
     return (
@@ -39,7 +45,7 @@ const TableReilway = () => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {data?.data?.length && data.data.map((el:review, i:number) => (                    
+                {!sort.length ? <h2 className="p-2 border bg-yellow-300 text-black rounded-md my-2">Bu categoriya boyicha ma'lumot mavjud emas</h2> : sort.map((el:review, i:number) => (                    
                     <TableRow key={el._id}>
                         <TableCell className="font-medium">{i+1}</TableCell>
                         <TableCell>{el.user.phone_number==null?'aniqlanmagan':el.user.phone_number.trim().length>12?el.user.phone_number:'+'+el.user.phone_number}</TableCell>

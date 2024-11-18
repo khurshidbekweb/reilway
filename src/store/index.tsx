@@ -1,11 +1,16 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'uz' | 'ru';
+type sort = number | null
 
 interface LanguageContextType {
     language: Language;
     changeLanguage: (lang: Language) => void;
+    mark: sort,
+    changeSort: (sort: sort) => void
 }
+
+
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
@@ -15,13 +20,18 @@ interface LanguageProviderProps {
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
     const [language, setLanguage] = useState<Language>('uz');
+    const [mark, setMark] = useState<sort>(null)
+
+    const changeSort = (sort: sort) => {
+        setMark(sort)
+    }
 
     const changeLanguage = (lang: Language) => {
         setLanguage(lang);
     };
 
     return (
-        <LanguageContext.Provider value={{ language, changeLanguage }}>
+        <LanguageContext.Provider value={{ language, mark,  changeLanguage, changeSort}}>
             {children}
         </LanguageContext.Provider>
     );
