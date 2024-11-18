@@ -5,6 +5,7 @@ import TableReilway from "@/components/table";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useLanguage } from "@/store";
+import Filter from "@/components/filter";
 
 type reviewChange = 'review' | 'review-type'
 
@@ -19,11 +20,12 @@ const Home = () => {
             <Navbar/>
             <div className="flex justify-between items-center my-4">
                 <div className="flex items-center">
-                    <Button onClick={() =>setReview('review')} className={` text-white rounded-e-none border-e ${review=='review'?'bg-blue-500':'bg-[#747d8c]'}`}>{language=='uz'?'Ko‘rib chiqish':'Обзор'}</Button>
-                    <Button onClick={() =>setReview('review-type')}  className={` text-white rounded-s-none ${review=='review-type'?'bg-blue-500':'bg-[#747d8c]'}`}>{language=='uz'?'Tipi bo`yicha ko`rish':'Тип обзора'}</Button>
+                    <Button onClick={() =>setReview('review')} className={` text-white rounded-e-none border-e ${review=='review'?'bg-blue-500':'bg-[#747d8c]'}`}>{language=='uz'?'Sharhlar':'Oтзывы'}</Button>
+                    <Button onClick={() =>setReview('review-type')}  className={` text-white rounded-s-none ${review=='review-type'?'bg-blue-500':'bg-[#747d8c]'}`}>{language=='uz'?'Kategoriyalar':'Категории'}</Button>
                 </div>
                 {review==='review-type' ? <AddReviewType/> :''} 
             </div>
+            <Filter/>
             <div className="home-page my-2 max-w-7xl mx-auto px-2 overflow-hidden overflow-x-scroll md:px-0">
                 {review ==='review' ? <TableReilway/> :<ReviewType/>}
             </div>

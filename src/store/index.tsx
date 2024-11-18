@@ -1,13 +1,17 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'uz' | 'ru';
-type sort = number | null
+
+interface filter {
+    mark: number | null
+    reviewType: string | null
+}
 
 interface LanguageContextType {
     language: Language;
     changeLanguage: (lang: Language) => void;
-    mark: sort,
-    changeSort: (sort: sort) => void
+    filter: Partial<filter>,
+    changeFilter: (filter: Partial<filter>) => void,
 }
 
 
@@ -20,18 +24,18 @@ interface LanguageProviderProps {
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
     const [language, setLanguage] = useState<Language>('uz');
-    const [mark, setMark] = useState<sort>(null)
+    const [filter, setFilter] = useState<Partial<filter>>({mark: null, reviewType: null})
 
-    const changeSort = (sort: sort) => {
-        setMark(sort)
-    }
 
     const changeLanguage = (lang: Language) => {
         setLanguage(lang);
     };
+    const changeFilter = (payload: Partial<filter>) => {
+        setFilter(payload);
+    };
 
     return (
-        <LanguageContext.Provider value={{ language, mark,  changeLanguage, changeSort}}>
+        <LanguageContext.Provider value={{ language, filter, changeLanguage, changeFilter }}>
             {children}
         </LanguageContext.Provider>
     );
