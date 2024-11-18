@@ -17,4 +17,12 @@ export const reviewUtils = {
         })
         return data
     },
+    deleteReview: async (id: string) => {
+        const { data} = await custimAxios.delete(`/review/delete/${id}`,{
+            headers: {
+                Authorization: `Token ${localStorage.getItem("token")}`
+            }
+        })
+        return data
+    }
 }

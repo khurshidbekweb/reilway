@@ -56,7 +56,7 @@ const EditReview = ({id, name}:editProps) => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</DialogTitle>
+                    <DialogTitle>{language=='uz'?'Kategoriya qo`shish':'Добавить категорию'}</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={addHnadleReviewType}>
                 <div className="grid gap-4 py-4">
@@ -88,7 +88,7 @@ const EditReview = ({id, name}:editProps) => {
                     </div>
                 </div>
                 <DialogFooter>
-                    <Button className="bg-black text-white" type="submit">Tahrirlash</Button>
+                    <Button className="bg-black text-white" type="submit">{language=='uz'?'Tahrirlash':'Редактировать'}</Button>
                 </DialogFooter>
                 </form>
             </DialogContent>

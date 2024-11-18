@@ -41,8 +41,7 @@ const ReviewType = () => {
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[10x]">№</TableHead>
-                    <TableHead>{language=='uz'?'Name':'Заголовок'}</TableHead>
-                    {/* <TableHead>{language=='uz'?'Review/Sub review':'Обзор/Подобзор'}</TableHead> */}
+                    <TableHead>{language=='uz'?'Nomi':'Имя'}</TableHead>
                     <TableHead>{language=='uz'?'':''}</TableHead>
                 </TableRow>
             </TableHeader>

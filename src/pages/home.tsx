@@ -18,6 +18,7 @@ const Home = () => {
     return (
         <div className="px-2 max-w-7xl mx-auto">
             <Navbar/>
+            <Filter/>
             <div className="flex justify-between items-center my-4">
                 <div className="flex items-center">
                     <Button onClick={() =>setReview('review')} className={` text-white rounded-e-none border-e ${review=='review'?'bg-blue-500':'bg-[#747d8c]'}`}>{language=='uz'?'Sharhlar':'Oтзывы'}</Button>
@@ -25,7 +26,6 @@ const Home = () => {
                 </div>
                 {review==='review-type' ? <AddReviewType/> :''} 
             </div>
-            <Filter/>
             <div className="home-page my-2 max-w-7xl mx-auto px-2 overflow-hidden overflow-x-scroll md:px-0">
                 {review ==='review' ? <TableReilway/> :<ReviewType/>}
             </div>
