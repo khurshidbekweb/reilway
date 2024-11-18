@@ -7,7 +7,7 @@ import { useLanguage } from "@/store";
 import { reviewTypeUtils } from "@/utils/review-type";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { MdAdd, MdOutlineAddCircle } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
 
 const AddReviewType = () => {
     const {language} = useLanguage()

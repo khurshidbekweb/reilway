@@ -42,7 +42,7 @@ const TableReilway = () => {
                 {data?.data?.length && data.data.map((el:review, i:number) => (                    
                     <TableRow key={el._id}>
                         <TableCell className="font-medium">{i+1}</TableCell>
-                        <TableCell>{el.user.phone_number==null?'aniqlanmagan':'+'+el.user.phone_number}</TableCell>
+                        <TableCell>{el.user.phone_number==null?'aniqlanmagan':el.user.phone_number.trim().length>12?el.user.phone_number:'+'+el.user.phone_number}</TableCell>
                         <TableCell><span className="border inline-block px-2">{el.mark}</span></TableCell>
                         <TableCell><h3>{el.parent_review_type?.name ? el.parent_review_type?.name[language] : 0}</h3></TableCell>
                         <TableCell><p className={`p-1 rounded-md text-center text-[14px] font-semibold text-white ${el.status==0?'bg-red-500':'bg-green-500'}`}>{el.status==0?'Jarayonda':'Tayyor'}</p></TableCell>
