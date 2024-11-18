@@ -21,14 +21,7 @@ const TableReilway = () => {
         queryFn: reviewUtils.getRewievs,
         queryKey: ['get_all_review']
     })    
-    console.log(mark);
-
-    const sort = mark ? data?.data.filter((e: review) => e.mark ===  mark) : data?.data
-    console.log(sort);
-    
-    
-    console.log(data?.data);
-    
+    const sort = mark ? data?.data.filter((e: review) => e.mark ===  mark) : data?.data    
     return (
         isLoading ? <Loader/> :
         <Table>
