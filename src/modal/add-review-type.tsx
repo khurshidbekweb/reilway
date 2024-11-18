@@ -1,23 +1,18 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "../components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
-import { reviewType } from "@/types";
 import { useLanguage } from "@/store";
 import { reviewTypeUtils } from "@/utils/review-type";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { MdAdd, MdOutlineAddCircle } from "react-icons/md";
 
 const AddReviewType = () => {
     const {language} = useLanguage()
     const queryClient = useQueryClient()
     const [open, setOpen] = useState(false)
-    const {data} = useQuery({
-        queryFn: reviewTypeUtils.getReviewType,
-        queryKey: ['get_all_review_types']
-    })
     const addReview = useMutation({
         mutationFn: reviewTypeUtils.postReviewType,
         onSuccess: () => {
@@ -41,19 +36,21 @@ const AddReviewType = () => {
             name: {
                 uz: target.uz.value,
                 ru: target.ru.value
-            },
-            reviewTypeId: target.parent.value || null
+            }
         })
     }
     
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button onClick={() => setOpen(true)} className="bg-[#747d8c] text-white block ml-auto">{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</Button>
+            <>
+            <Button onClick={() => setOpen(true)} className="bg-black block md:hidden text-white ml-auto"><MdAdd size={25}/></Button>
+            <Button onClick={() => setOpen(true)} className="bg-[#747d8c] hidden md:block text-white ml-auto">{language=='uz'?'Kategoriya qo`shish':'Добавить категорию'}</Button>
+            </>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
-                    <DialogTitle>{language=='uz'?'Review type qo`shish':'Добавить тип отзыва'}</DialogTitle>
+                    <DialogTitle>{language=='uz'?'Kategoriya qo`shish':'Добавить категорию'}</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={addhnadleReview}>
                 <div className="grid gap-4 py-4">
@@ -65,7 +62,6 @@ const AddReviewType = () => {
                             id="name"
                             name="uz"
                             className="col-span-3"
-                            placeholder="Salom"
                             required
                         />
                     </div>
@@ -76,29 +72,13 @@ const AddReviewType = () => {
                         <Input
                         name="ru"
                             id="username"
-                            placeholder="Привет"
                             className="col-span-3"
                             required
                         />
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label className="text-right">
-                            Parent review
-                        </Label>
-                        <Select name="parent">
-                        <SelectTrigger className="col-span-3">
-                            <SelectValue placeholder={language=='uz'?'Ota reviewni tanlang':'Выберите родительский отзыв'} />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {data?.subReviews?.length && data.subReviews.map((el:reviewType) => (
-                                <SelectItem value={el._id} key={el._id}>{el.name[language]}</SelectItem>
-                            ))}
-                        </SelectContent>
-                        </Select>
-                    </div>
                 </div>
                 <DialogFooter>
-                    <Button className="bg-black text-white" type="submit">Qo'shish</Button>
+                    <Button className="bg-black text-white" type="submit">{language=='uz'?'Qo`shish':'Добавить'}</Button>
                 </DialogFooter>
                 </form>
             </DialogContent>

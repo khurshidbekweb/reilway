@@ -5,7 +5,6 @@ export interface postReviewTypeT{
         uz:string,
         ru: string
     },
-    reviewTypeId:string | null
 }
 export interface postReviewTypeP{
     name: {
@@ -24,9 +23,9 @@ export const reviewTypeUtils = {
         })
         return data
     },
-    postReviewType: async ({name, reviewTypeId}:postReviewTypeT) => {
+    postReviewType: async ({name}:postReviewTypeT) => {
         const {data} = await custimAxios.post('/review-type/add',{
-            name, reviewTypeId
+            name, 
         }, {
             headers: {
                 Authorization: `Token ${localStorage.getItem("token")}`

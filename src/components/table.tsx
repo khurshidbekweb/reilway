@@ -31,7 +31,7 @@ const TableReilway = () => {
                     <TableHead className="w-[10x]">№</TableHead>
                     <TableHead>{language=='uz'?'Foydalanuvchi':'Пользователь'}</TableHead>
                     <TableHead>{language=='uz'?'Baho':'Оценка'}</TableHead>
-                    <TableHead>{language=='uz'?'Review/Sub review':'Обзор/Подобзор'}</TableHead>
+                    <TableHead>{language=='uz'?'Kategoriya':'Категория'}</TableHead>
                     <TableHead>{language=='uz'?'Status':'Статус'}</TableHead>
                     <TableHead>{language=='uz'?'Bilet':'Билет'}</TableHead>
                     <TableHead>{language=='uz'?'Yaratilgan vaqti':'Время запроса'}</TableHead>
@@ -39,14 +39,12 @@ const TableReilway = () => {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {data?.data?.length && data.data.map((el:review, i:number) => (
+                {data?.data?.length && data.data.map((el:review, i:number) => (                    
                     <TableRow key={el._id}>
                         <TableCell className="font-medium">{i+1}</TableCell>
                         <TableCell>{el.user.phone_number==null?'aniqlanmagan':'+'+el.user.phone_number}</TableCell>
                         <TableCell><span className="border inline-block px-2">{el.mark}</span></TableCell>
-                        <TableCell><ul>{el.parent_review_type?.name[language]}
-                            <li className="ml-2">● {el.review_type?.name[language]}</li>
-                        </ul></TableCell>
+                        <TableCell><h3>{el.parent_review_type?.name ? el.parent_review_type?.name[language] : 0}</h3></TableCell>
                         <TableCell><p className={`p-1 rounded-md text-center text-[14px] font-semibold text-white ${el.status==0?'bg-red-500':'bg-green-500'}`}>{el.status==0?'Jarayonda':'Tayyor'}</p></TableCell>
                         <TableCell>{el?.ticket ? <TicketImg ticket={el.ticket}/>: ''}</TableCell>
                         <TableCell>{el.createdAt.slice(11, 16)} -- {el.createdAt.slice(0, 10)}</TableCell>
