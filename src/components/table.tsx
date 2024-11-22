@@ -62,13 +62,11 @@ const TableReilway = () => {
     }) : data?.data
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(5);
+    const [postsPerPage, setPostPerPage] = useState(5);
 
     const indexOfLastPost = currentPage * postsPerPage;
-
-const indexOfFirstPost = indexOfLastPost - postsPerPage;
-
-const currentPosts = sort?.slice(indexOfFirstPost, indexOfLastPost);
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = sort?.slice(indexOfFirstPost, indexOfLastPost);
 
     return (
         isLoading ? <Loader /> :
@@ -96,13 +94,13 @@ const currentPosts = sort?.slice(indexOfFirstPost, indexOfLastPost);
                                 <TableCell><h3>{el.parent_review_type?.name ? el.parent_review_type?.name[language] : 0}</h3></TableCell>
                                 <TableCell>{el?.ticket ? <TicketImg ticket={el.ticket} /> : ''}</TableCell>
                                 <TableCell>{el.createdAt.slice(0, 10)} {el.createdAt.slice(11, 16)}</TableCell>
-                                <TableCell className="line-clamp-2">{el.comment}</TableCell>
+                                <TableCell title={el.comment} className="line-clamp-2 h-[50px]">{el.comment}</TableCell>
                                 <TableCell><DeleteReview fn={deleteReview.mutate} id={el?._id} /></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
-                <PaginationContyent currentPage={currentPage} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage}  totalPosts={sort?.length} />
+                <PaginationContyent currentPage={currentPage} setPostPerPage={setPostPerPage}  postsPerPage={postsPerPage} setCurrentPage={setCurrentPage}  totalPosts={sort?.length} />
             </>
     );
 };
