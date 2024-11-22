@@ -15,6 +15,7 @@ import {
     SelectValue
 } from "./ui/select";
 import { Button } from "./ui/button";
+import { useLanguage } from "@/store";
 
 interface PropsType {
     postsPerPage: number
@@ -28,6 +29,7 @@ const PaginationContyent = ({ postsPerPage, totalPosts, setCurrentPage, setPostP
     const totalPages = Math.ceil(totalPosts / postsPerPage);
     console.log(currentPage);
     const pageNumbers = []
+    const { language } = useLanguage()
 
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
@@ -39,7 +41,7 @@ const PaginationContyent = ({ postsPerPage, totalPosts, setCurrentPage, setPostP
     };
     return (
         <div className="ml-0 flex items-center gap-3 p-3">
-            <Button className="shadow-md border">{totalPosts}</Button>
+            <Button className="shadow-md border">{language == 'uz' ? 'Umumiy soni: ' : 'Общее количество: '} {totalPosts}</Button>
             <Select onValueChange={(value) => setPostPerPage(Number(value))}>
                 <SelectTrigger className="w-[70px]">
                     <SelectValue placeholder={postsPerPage} />
@@ -50,15 +52,14 @@ const PaginationContyent = ({ postsPerPage, totalPosts, setCurrentPage, setPostP
                     <SelectItem value="20">20</SelectItem>
                 </SelectContent>
             </Select>
-            <Pagination>
+            {totalPosts >= postsPerPage ? <Pagination>
                 <PaginationContent>
-
                     <PaginationItem>
                         <PaginationPrevious className="w-7 h-7 border rounded-full flex items-center justify-center p-0" onClick={() => handlePageChange(currentPage - 1)} />
                     </PaginationItem>
                     {pageNumbers?.map((e: number) => (
                         <PaginationItem key={e}>
-                            <PaginationLink className={currentPage===e ? 'border border-blue-500': ''} onClick={() => handlePageChange(e)}>{e}</PaginationLink>
+                            <PaginationLink className={currentPage === e ? 'border border-blue-500 cursor-pointer' : 'cursor-pointer'} onClick={() => handlePageChange(e)}>{e}</PaginationLink>
                         </PaginationItem>
                     ))}
                     <PaginationItem>
@@ -68,7 +69,7 @@ const PaginationContyent = ({ postsPerPage, totalPosts, setCurrentPage, setPostP
                         <PaginationNext className="w-7 h-7 border rounded-full flex items-center justify-center p-0" onClick={() => handlePageChange(currentPage + 1)} />
                     </PaginationItem>
                 </PaginationContent>
-            </Pagination>
+            </Pagination> : ''}
         </div>
     );
 };
