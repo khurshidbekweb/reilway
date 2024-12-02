@@ -9,7 +9,7 @@ const SeeComment = ({comment}:PropsComment) => {
   const {language} = useLanguage()
   return (
     <Dialog>
-      <DialogTrigger className="line-clamp-2 text-startfin h-[45px]">{comment}</DialogTrigger>
+      <DialogTrigger className="line-clamp-2 text-start h-[45px]">{comment}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{language == 'uz' ?"Izoh":"Комментарий"}</DialogTitle>
