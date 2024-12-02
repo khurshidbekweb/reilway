@@ -35,6 +35,7 @@ const PaginationContyent = ({ postsPerPage, totalPosts, setCurrentPage, setPostP
         pageNumbers.push(i);
     }
 
+    
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);

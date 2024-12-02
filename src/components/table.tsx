@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import DeleteReview from "@/modal/delete-review";
 import PaginationContyent from "./pagination";
 import { useState } from "react";
+import SeeComment from "@/modal/see-comment";
 
 
 
@@ -94,7 +95,7 @@ const TableReilway = () => {
                                 <TableCell><h3>{el.parent_review_type?.name ? el.parent_review_type?.name[language] : 0}</h3></TableCell>
                                 <TableCell>{el?.ticket ? <TicketImg ticket={el.ticket} /> : ''}</TableCell>
                                 <TableCell>{el.createdAt.slice(0, 10)} {el.createdAt.slice(11, 16)}</TableCell>
-                                <TableCell title={el.comment} className="line-clamp-2 h-[50px]">{el.comment}</TableCell>
+                                <TableCell title={el.comment} className="line-clamp-2 h-[50px]">{el.comment.length>=50?<SeeComment comment={el.comment}/>:el.comment}</TableCell>
                                 <TableCell><DeleteReview fn={deleteReview.mutate} id={el?._id} /></TableCell>
                             </TableRow>
                         ))}
