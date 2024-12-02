@@ -1,3 +1,4 @@
+import { useLanguage } from "@/store";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../components/ui/dialog";
 
 interface PropsComment{
@@ -5,15 +6,15 @@ interface PropsComment{
 }
 
 const SeeComment = ({comment}:PropsComment) => {
+  const {language} = useLanguage()
   return (
     <Dialog>
-      <DialogTrigger>{comment}</DialogTrigger>
+      <DialogTrigger className="line-clamp-2 text-start h-[45px]">{comment}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your account
-            and remove your data from our servers.
+          <DialogTitle>{language == 'uz' ?"Izoh":"Комментарий"}</DialogTitle>
+          <DialogDescription className="text-[17px] font-semibold text-start">
+              {comment}
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
