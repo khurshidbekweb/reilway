@@ -90,7 +90,7 @@ const TableReilway = () => {
                         {!currentPosts?.length ? <h2 className="p-2 border bg-yellow-300 text-black rounded-md my-2">Bu categoriya boyicha ma'lumot mavjud emas</h2> : currentPosts.map((el: review, i: number) => (
                             <TableRow key={el._id}>
                                 <TableCell className="font-medium">{i + 1}</TableCell>
-                                <TableCell>{el.user.phone_number == null ? 'aniqlanmagan' : el.user.phone_number.trim().length > 12 ? el.user.phone_number : '+' + el.user.phone_number}</TableCell>
+                                <TableCell>{el.user.phone_number == null ? language=='uz'?'aniqlanmagan':'Не определено' : el.user.phone_number.trim().length > 12 ? el.user.phone_number : '+' + el.user.phone_number}</TableCell>
                                 <TableCell><span className="border inline-block px-2">{el.mark}</span></TableCell>
                                 <TableCell><h3>{el.parent_review_type?.name ? el.parent_review_type?.name[language] : 0}</h3></TableCell>
                                 <TableCell>{el?.ticket ? <TicketImg ticket={el.ticket} /> : ''}</TableCell>
